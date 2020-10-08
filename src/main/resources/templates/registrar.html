@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<form th:action="@{/registrar}" th:object="${usuario}" method="post">
+		<section class="form-register">
+			<h4 th:text="${titulo}"></h4>
+			<small class="form-text text-danger"th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+			<input class="controls" type="text" th:field="*{nombre}" placeholder="Ingrese su Nombre"/> 
+			<small class="form-text text-danger"th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+			<input class="controls" type="text" th:field="*{apellido}" placeholder="Ingrese su Apellido"/> 
+			<small class="form-text text-danger"th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+			<input class="controls" type="email" th:field="*{email}" placeholder="Ingrese su Correo"/> 
+			<small class="form-text text-danger"th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+			<input class="controls" type="password" th:field="*{password}" placeholder="Ingrese su Contraseña"/>
+			
+			<p>
+				Estoy de acuerdo con <a href="#">Terminos y Condiciones</a>
+			</p>
+			<input class="botons" type="submit" value="Registrar"/>
+			<p>
+				<a th:href="@{/login}">¿Ya tengo Cuenta?</a>
+			</p>
+		</section>
+		<input type="hidden" th:field="*{id}"/>
+	</form>
+
+</body>
+</html>

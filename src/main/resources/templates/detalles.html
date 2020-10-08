@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Todo Uno Store</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Home<span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Productos</a></li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/ver-articulos-compra}"><i class="fad fa-bicycle">(<label th:text="${cantpro}" style="color: orange;"></label>)</i>Carrito</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+				</ul>
+			</div>
+		</nav>
+	
+		<!-- Single Page -->
+	<div class="banner-bootom-w3-agileits py-5">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+				<span>D</span>etalle
+				<span>P</span>roducto</h3>
+			<!-- //tittle heading -->
+			<div class="row">
+				<div class="col-lg-5 col-md-8 single-right-left ">
+					<div class="grid images_3_of_2">
+						<div class="flexslider">
+						<div class="thumb-image">
+							<img th:if="${#strings.length(producto.foto) > 0}" style="max-width: 600%;" th:alt="${producto.foto}"
+							th:src="@{'/uploads/' + ${producto.foto}}" th:data-imagezoom="true" class="img-fluid" th:draggable="false" >
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
+					<h3 class="mb-3"th:text="${producto.descripcion}"></h3>
+					<p class="mb-3">
+						<span class="item_price" th:text="${producto.precio}"></span>
+						<del class="mx-2 font-weight-light">$280.00</del>
+						<label>Free delivery</label>
+					</p>
+					<div class="single-infoagile">
+						<ul>
+							<li class="mb-3">
+								Cash on Delivery Eligible.
+							</li>
+							<li class="mb-3">
+								<span th:text="'Cantidad Disponible '+ ${producto.cantidad}"></span>
+							</li>
+							<li class="mb-3">
+								EMIs from $655/month.
+							</li>
+							<li class="mb-3">
+								Bank OfferExtra 5% off* with Axis Bank Buzz Credit CardTC
+							</li>
+						</ul>
+					</div>
+				<!-- 	<div class="product-single-w3l">
+						<p class="my-3">
+							<i class="far fa-hand-point-right mr-2"></i>
+							<label>1 Year</label>Manufacturer Warranty</p>
+						<ul>
+							<li class="mb-1">
+								3 GB RAM | 16 GB ROM | Expandable Upto 256 GB
+							</li>
+							<li class="mb-1">
+								5.5 inch Full HD Display
+							</li>
+							<li class="mb-1">
+								13MP Rear Camera | 8MP Front Camera
+							</li>
+							<li class="mb-1">
+								3300 mAh Battery
+							</li>
+							<li class="mb-1">
+								Exynos 7870 Octa Core 1.6GHz Processor
+							</li>
+						</ul>
+						<p class="my-sm-4 my-3">
+							<i class="fas fa-retweet mr-3"></i>Net banking  Credit/ Debit/ ATM card
+						</p>
+					</div>
+				 -->	
+					<div class="occasion-cart">
+					<a th:href="@{/agregar-carrito/} + ${producto.id}" class="btn btn-primary btn-lg active">ADD MINICART</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<footer th:replace="layout/layout :: footer"></footer>
+<script> 
+	paypals.minicarts.render(); 
+</script >
+
+</body>
+</html>

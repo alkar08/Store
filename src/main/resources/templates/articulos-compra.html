@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Todo Uno Store</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Home<span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Productos</a></li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/catalogo}">Seguir Coprando</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+	<!-- //page -->
+	<!-- checkout page -->
+	<div class="privacy py-sm-5 py-4">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+				<span>C</span>heckout
+			</h3>
+			<!-- //tittle heading -->
+			<div class="checkout-right">
+				<h4 class="mb-sm-4 mb-3">Tu carrito de compras tiene:
+					<span th:text="${cantidadProductos} + ' Productos'"></span>
+				</h4>
+				<div class="table-responsive">
+					<table class="timetable_sub">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Nombre Producto</th>
+
+								<th>Precio</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="rem1" th:each="cart: ${listaCarrito}">
+								<td class="invert" th:text="${cart.item}"></td>
+								<td class="invert-image"><a th:href="@{/detalles/} + ${cart.idProducto}"><img th:if="${#strings.length(cart.foto) > 0}"
+												style="max-width: 50%;" th:alt="${cart.foto}"
+												th:src="@{'/uploads/' + ${cart.foto}}" class="img-responsive">
+									</a>
+								</td>
+								<td class="invert">
+									<div class="quantity">
+										<div class="quantity-select">
+											<div class="entry value-minus">&nbsp;</div>
+											<div class="entry value">
+												<span th:text="${cart.cantidad}"></span>
+											</div>
+											<div class="entry value-plus active">&nbsp;</div>
+										</div>
+									</div>
+								</td>
+								<td class="invert" th:text="${cart.nombre}"></td>
+								<td class="invert" th:text="${cart.precio}"></td>
+								<td class="invert">
+									<div class="rem">
+										<div class="close1"> </div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="checkout-left">
+				<div class="address_form_agile mt-sm-5 mt-4">
+					<h4 class="mb-sm-4 mb-3">Datos Entrega</h4>
+					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+							<div class="information-wrapper">
+								<div class="first-row">
+									<div class="controls form-group">
+										<input class="billing-address-name form-control" type="text" name="name" placeholder="Nombre Completo" required="required">
+									</div>
+									<div class="w3_agileits_card_number_grids">
+										<div class="w3_agileits_card_number_grid_left form-group">
+											<div class="controls">
+												<input type="text" class="form-control" placeholder="Celular" name="number" required="required">
+											</div>
+										</div>
+										<div class="w3_agileits_card_number_grid_right form-group">
+											<div class="controls">
+												<input type="text" class="form-control" placeholder="Departamento" name="landmark" required="required">
+											</div>
+										</div>
+									</div>
+									<div class="controls form-group">
+										<input type="text" class="form-control" placeholder="Ciudad" name="city" required="required">
+									</div>
+									<div class="controls form-group">
+										<select class="option-w3ls">
+											<option>Seleccione</option>
+											<option>Oficina</option>
+											<option>Casa</option>
+											<option>Comercial</option>
+
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<div class="checkout-right-basket">
+						<a th:href="@{/pagar}">Continuar Pago
+							<span class="far fa-hand-point-right"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

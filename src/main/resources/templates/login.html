@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<form th:action="@{/login}" method="post">
+		<section class="form-register">
+    		<h4>Inicio Sesión</h4>
+			<input class="controls" type="email" name="email" placeholder="Ingrese su Correo" required="required" autofocus="autofocus"/> 
+			<input class="controls" type="password" name="password" placeholder="Ingrese su Contraseña" required="required" />
+    		<input class="botons" type="submit" value="Ingresar"/>
+   			 <p><a th:href="@{/registrar}">¿No tengo Cuenta?</a></p>
+  		</section>
+	</form>
+</body>
+</html>

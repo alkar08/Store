@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Todo Uno Store</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Home<span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Productos</a></li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/ver-articulos-compra}"><i class="fad fa-bicycle">(<label th:text="${cantpro}" style="color: orange;"></label>)</i>Carrito</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+					
+				</ul>
+			</div>
+		</nav>
+
+	<div>
+		<div class="wrapper">
+			<div class="row">
+				<div>
+					<div class="wrapper">
+						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+							<h3 class="heading-tittle text-center font-italic"
+								th:text="${titulo}"></h3>
+							<div class="row">
+								<div class="col-md-4 product-men mt-5"
+									th:each="producto: ${listaProductos}">
+									<div class="men-pro-item simpleCart_shelfItem">
+										<div class="men-thumb-item text-center">
+											<img th:if="${#strings.length(producto.foto) > 0}"
+												style="max-width: 50%;" th:alt="${producto.foto}"
+												th:src="@{'/uploads/' + ${producto.foto}}">
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a th:href="@{/detalles/} + ${producto.id}"
+														class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
+										</div>
+										<div class="item-info-product text-center border-top mt-4">
+											<h4 class="pt-1">
+												<a href="single.html" th:text="${producto.nombre}"></a>
+											</h4>
+											<div class="info-product-price my-2">
+												<span class="item_price" th:text="${producto.precio}"></span>
+												<del>$280.00</del>
+											</div>
+											<div
+												class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+											<div class="occasion-cart">
+											<a th:href="@{/agregar-carrito/} + ${producto.id}" class="btn btn-primary btn-lg ">ADD MINICART</a>
+											</div>
+											
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

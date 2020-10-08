@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Todo Uno Store</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="#">Home<span
+						class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Seguir
+						Comprando</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+		<!-- payment page-->
+	<div class="privacy py-sm-5 py-4">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+				<span>P</span>agos</h3>
+			<!-- //tittle heading -->
+			<div class="checkout-right">
+				<!--Horizontal Tab-->
+				<div id="parentHorizontalTab" style="display: block; width: 100%; margin: 0px;">
+					<div class="resp-tabs-container hor_1">
+						<div class="resp-tab-content hor_1 resp-tab-content-active" aria-labelledby="hor_1_tab_item-1">
+							<form action="#" method="post" class="creditly-card-form agileinfo_form">
+								<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+									<div class="credit-card-wrapper">
+										<div class="first-row form-group">
+											<div class="controls">
+												<label class="control-label">Nombre en la tarjeta</label>
+												<input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith">
+											</div>
+											<div class="w3_agileits_card_number_grids my-3">
+												<div class="w3_agileits_card_number_grid_left">
+													<div class="controls">
+														<label class="control-label">Numero tarjerta</label>
+														<input class="number credit-card-number form-control" type="text" name="number" inputmode="numeric" autocomplete="cc-number"
+														    autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+													</div>
+												</div>
+												<div class="w3_agileits_card_number_grid_right mt-2">
+													<div class="controls">
+														<label class="control-label">CVV</label>
+														<input class="security-code form-control" · inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;">
+													</div>
+												</div>
+												<div class="clear"> </div>
+											</div>
+											<div class="controls">
+												<label class="control-label">Fecha Expiracion</label>
+												<input class="expiration-month-and-year form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
+											</div>
+										</div>
+										<button class="submit mt-3">
+											<span>Realizar Pago </span>
+										</button>
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</div>
+						
+				<!--Plug-in Initialisation-->
+			</div>
+		</div>
+	</div>
+</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<!-- credit-card -->
+	<script src="js/creditly.js"></script>
+	
+	<script>
+		$(function () {
+			var creditly = Creditly.initialize(
+				'.creditly-wrapper .expiration-month-and-year',
+				'.creditly-wrapper .credit-card-number',
+				'.creditly-wrapper .security-code',
+				'.creditly-wrapper .card-type');
+
+
+			$(".creditly-card-form .submit").click(function (e) {
+				e.preventDefault();
+				var output = creditly.validate();
+				if (output) {
+					// Your validated credit card output
+					console.log(output);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
